@@ -1,0 +1,52 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "name": "vnet1",
+        "resourceGroup": "rg1",
+        "location": "southindia",
+        "addressPrefix": "20.0.0.0/16",
+        "subnet1Name": "subnet1",
+        "subnet1AddressPrefix": "20.0.1.0/24",
+		"subnet2Name": "subnet2",
+        "subnet2AddressPrefix": "20.0.2.0/24",
+		"subnet3Name": "subnet3",
+        "subnet3AddressPrefix": "20.0.3.0/24",
+        
+    },
+	"resources": [
+        {
+            "apiVersion": "2018-08-01",
+            "name": "[variables('name')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[variables('location')]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('addressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnet1Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnet1AddressPrefix')]"
+                        }
+                    },
+					{
+                        "name": "[variables('subnet2Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnet2AddressPrefix')]"
+                        }
+                    },
+					{
+                        "name": "[variables('subnet3Name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnet3AddressPrefix')]"
+                        }
+                    }
+                ],
+            }
+        }
+    ]
+}
